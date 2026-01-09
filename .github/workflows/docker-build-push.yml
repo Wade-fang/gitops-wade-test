@@ -65,11 +65,11 @@ jobs:
         # This is the GitHib Action that will be in the
         # example-environment GitHub repo which is mentioned ENV_REPO
         env:
-          ENV_REPO: ${{ github.event.repository.owner.name }}/gitops-example-env
+          ENV_REPO: ${{ secrets.DOCKERHUB_USERNAME }}/${{github.event.repository.name}}
         uses: benc-uk/workflow-dispatch@v1.2.4
         with:
           workflow: ApplicationVersion.yml
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          inputs: '{"tag_name": "${{ env.TAG_NAME }}", "app_repo": "${{ github.event.repository.name }}", "image": "${{ github.event.repository.full_name }}:${{ env.TAG_NAME }}"}'
+          inputs: '{"tag_name": "${{ env.TAG_NAME }}", "app_repo": "${{ github.event.repository.name }}", "image": "${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ env.TAG_NAME }}"}'
           ref: refs/heads/main
           repo: ${{ env.ENV_REPO }}
