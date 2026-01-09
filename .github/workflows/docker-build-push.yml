@@ -68,7 +68,7 @@ jobs:
           ENV_REPO: ${{ github.event.repository.owner.name }}/gitops-example-env
         uses: benc-uk/workflow-dispatch@v1.2.4
         with:
-          workflow: ApplicationVersion.yaml
+          workflow: ApplicationVersion.yml
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           inputs: '{"tag_name": "${{ env.TAG_NAME }}", "app_repo": "${{ github.event.repository.name }}", "image": "${{ github.event.repository.full_name }}:${{ env.TAG_NAME }}"}'
           ref: refs/heads/main
